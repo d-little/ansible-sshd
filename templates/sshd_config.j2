@@ -1,4 +1,5 @@
 # {{ ansible_managed }}
+
 {% macro render_option(key,value,indent=false) %}
 {%   if value is defined %}
 {%     if indent == true %}  {% endif %}
@@ -15,6 +16,7 @@
 {%     endif %}
 {%   endif %}
 {% endmacro %}
+
 {% macro body_option(key,override) %}
 {%   set value = undefined %}
 {%   if override is defined %}
@@ -26,6 +28,7 @@
 {%   endif %}
 {{ render_option(key,value) -}}
 {% endmacro %}
+
 {% macro match_block(match_list) %}
 {%   if match_list["Condition"] is defined %}
 {%     set match_list = [ match_list ]%}
@@ -87,6 +90,7 @@ Match {{ match["Condition"] }}
 {%     endfor %}
 {%   endif %}
 {% endmacro %}
+
 {{ body_option("Port",sshd_Port) -}}
 {{ body_option("AddressFamily",sshd_AddressFamily) -}}
 {{ body_option("ListenAddress",sshd_ListenAddress) -}}
